@@ -38,11 +38,17 @@ def parse_request():
 
     new_data = { 'id': id, 'name': name, 'msg': msg, 'time': time }
 
-    check_json_file(file)
-    check_json_size_file(file, new_data)
-
     if request.method == 'POST':
-        return f'done, {id}, {name}, {msg}, {time}'
+        check_json_file(file)
+        check_json_size_file(file, new_data)
+
+        json_data = { 'status': 'done' }
+
+        return json_data
+
+    # if request.method == 'POST':
+    #     return ''
+        # return f'done, {id}, {name}, {msg}, {time}'
 
     # id = request.args.get('id')
     # name = request.args.get('name')

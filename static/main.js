@@ -11,14 +11,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
         // нажимаем enter
         if( event.code === 'Enter' ){
             focus_msg_field()
-            console.log('enter was pressed');
+            // console.log('enter was pressed');
         }
     });
 
     sendMessage.onclick = () => {
         // нажимаем конпку отправить сообщение
         focus_msg_field()
-        console.log('click button');
+        // console.log('click button');
     };
 
     function focus_msg_field(){
@@ -71,13 +71,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 type: "POST",
                 url: uri,
                 data: JSON.stringify(post_data),
-                contentType: "application/json",
-                success: function (result) {
-                    console.log(result);
-                },
-                error: function (result, status) {
-                    console.log(result);
-                }
+                contentType: "application/json"
+                // success: function (result) {
+                //     console.log(result);
+                // },
+                // error: function (result, status) {
+                //     console.log(result);
+                // }
             });
 
             content.innerHTML += html;
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             let html = html_template_msg(ndata)
             content.innerHTML += html;
 
-            console.log(item)
+            // console.log(item)
         })
 
         content.scrollTo(0, content.scrollHeight);
@@ -117,12 +117,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         $.post(uri, { get_message: "get_message" }, function(res){
             // console.log(res)
+            content.innerHTML = '';
             add_items_to_main_container(res)
         })
     }
 
-    // ротация сообщений
+
     setInterval(loadMessages, 5000)
 
-    console.log("dom loaded")
+    // console.log("dom loaded")
 });
